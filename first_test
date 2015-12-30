@@ -22,7 +22,7 @@ live_loop :bla do
   #sync :sound
   use_synth :prophet
   with_fx :compressor, clamp_time: 0.5 do
-    play [:e1, :e2], release: 5, cutoff: rrand(20, 120), amp: 0.4
+  #  play [:e1, :e2], release: 5, cutoff: rrand(20, 120), amp: 0.4
   end
 end
 
@@ -33,7 +33,7 @@ live_loop :foo do
       use_random_seed rrand(1000, 9000)
       4.times do
         sleep 0.25
-        play chord(:e3, :minor).choose, release: 0.1, pan: rrand(-1, 1, res: 0.9), amp: 1
+      #  play chord(:e3, :minor).choose, release: 0.1, pan: rrand(-1, 1, res: 0.9), amp: 1
       end
     end
   end
