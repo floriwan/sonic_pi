@@ -1,0 +1,31 @@
+use_bpm 130
+
+notes = (ring :E4, :Fs4, :B4, :Cs5, :D5, :Fs4, :E4, :Cs5, :B4, :Fs4, :D5, :Cs5)
+
+live_loop :bass do
+
+  if (spread 1, 4).tick then # *---
+    sample :bd_tek, cutoff: 50, amp: 0.6
+  end
+
+  sleep 0.25
+
+end
+
+live_loop :snare do
+  sync :bass
+  if (spread 3, 8).tick then # *--*--*-
+    with_fx :hpf, cutoff: 80 do
+      sample :drum_snare_soft, amp: 0.3
+    end
+  end
+  sleep 0.25
+end
+
+
+live_loop :bla do
+  with_fx :wobble do
+    synth :tb303, note: notes.tick, cutoff: (line 80, 120, steps: 200).tick, amp: 0
+  end
+  sleep 0.25
+end
