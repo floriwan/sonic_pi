@@ -1,15 +1,80 @@
-use_synth_defaults release: 0.5, amp: 0.7, cutoff: 90
+#use_bpm 60
+use_bpm 120 # this is the correct speed
+use_synth_defaults release: 1, amp: 0.7, cutoff: 90
 use_synth :beep
 
-2.times do
-  play_pattern_timed [:F4, :AB4, :F4, :F4, :BB4, :F4, :EB4], [0.5, 0.30, 0.25, 0.125, 0.25, 0.25]
-  play_pattern_timed [:F4, :C5, :F4, :F4, :DB5, :C5, :A4], [0.5, 0.30, 0.25, 0.125, 0.25, 0.25]
-  play_pattern_timed [:F4, :C5, :F5, :F4, :E4, :E4, :C4, :G4, :F4], [0.25, 0.25, 0.25, 0.125, 0.25, 0.125, 0.25, 0.25, 0.25]
+
+#live_loop :metronome do # only for testing
+#  if (spread 1, 4).tick then # *---
+#    sample :drum_snare_hard, cutoff: 50, amp: 1
+#  end
+#  sleep 0.25
+#end
+
+2.times do # theme melody
+  play_pattern_timed [:F4], [1]
+  play_pattern_timed [:AB4], [0.75]
+  play_pattern_timed [:F4], [0.5]
+  play_pattern_timed [:F4],[0.25]
+  play_pattern_timed [:BB4], [0.5]
+  play_pattern_timed [:F4], [0.5]
+  play_pattern_timed [:EB4], [0.5]
+
+  play_pattern_timed [:F4], [1]
+  play_pattern_timed [:C5], [0.75]
+  play_pattern_timed [:F4], [0.5]
+  play_pattern_timed [:F4], [0.25]
+  play_pattern_timed [:DB5], [0.5]
+  play_pattern_timed [:C5], [0.5]
+  play_pattern_timed [:AB4], [0.5]
+
+  play_pattern_timed [:F4], [0.5]
+  play_pattern_timed [:C5], [0.5]
+  play_pattern_timed [:F5], [0.5]
+  play_pattern_timed [:F4], [0.25]
+  play_pattern_timed [:EB4], [0.5]
+  play_pattern_timed [:EB4], [0.25]
+  play_pattern_timed [:C4], [0.5]
+  play_pattern_timed [:G4], [0.5]
+
+  #play_pattern_timed [:F4], [0.5]
+  #play_pattern_timed [:F4], [1]
+  play_pattern_timed [:F4], [1.5] # play this as one note, how to set the release time here?
   sleep 1
+
 end
 
 use_synth :tb303
-play_pattern_timed [:F2, :F3, :E2, :E3, :C2, :C3, :E2, :F2, :C2], [0.5, 0.30, 0.25, 0.125, 0.25, 0.25]
-play_pattern_timed [:F2, :F3, nil, :C2, :C3, :E3, :F4], [0.5, 0.30, 0.25, 0.125, 0.25, 0.25, 0.25]
-play_pattern_timed [:D2, :D3, :E2, :E3, :C2, :C3, :E2, :F2, :F3], [0.5, 0.30, 0.25, 0.125, 0.25, 0.25]
-play_pattern_timed [:F2, :F3, nil, :C2, :C3, :E3, :F4], [0.5, 0.30, 0.25, 0.125, 0.25, 0.25, 0.25]
+2.times do # the bass theme
+  play_pattern_timed [:F2], [1] # 09
+  play_pattern_timed [:F3], [0.75]
+  play_pattern_timed [:EB2], [0.5]
+  play_pattern_timed [:EB3], [0.25]
+  play_pattern_timed [:C2], [0.5]
+  play_pattern_timed [:C3], [0.5]
+  play_pattern_timed [:EB2], [0.5]
+
+  play_pattern_timed [:F2], [1] # 10
+  play_pattern_timed [:F3], [0.75]
+  sleep 0.5 # 1/8 break
+  play_pattern_timed [:C2], [0.25]
+  play_pattern_timed [:C3], [0.5]
+  play_pattern_timed [:EB3], [0.5]
+  play_pattern_timed [:F3], [0.5]
+
+  play_pattern_timed [:D2], [1] # 11
+  play_pattern_timed [:D3], [0.75]
+  play_pattern_timed [:EB2], [0.5]
+  play_pattern_timed [:EB3], [0.25]
+  play_pattern_timed [:C2], [0.5]
+  play_pattern_timed [:C3], [0.5]
+  play_pattern_timed [:EB2], [0.5]
+
+  play_pattern_timed [:F2], [1] # 12
+  sleep 1
+  sleep 0.25 # 1/16
+  play_pattern_timed [:F3], [0.25]
+  play_pattern_timed [:C3], [0.5]
+  play_pattern_timed [:B2], [0.5]
+  play_pattern_timed [:AB2], [0.5]
+end
