@@ -1,8 +1,6 @@
 #use_bpm 60
 use_bpm 120 # this is the correct speed
 use_synth_defaults release: 1, amp: 0.7, cutoff: 90
-use_synth :beep
-
 
 #live_loop :metronome do # only for testing
 #  if (spread 1, 4).tick then # *---
@@ -11,7 +9,9 @@ use_synth :beep
 #  sleep 0.25
 #end
 
-2.times do # theme melody
+define :axel_f_melody do
+  use_synth :beep
+
   play_pattern_timed [:F4], [1]
   play_pattern_timed [:AB4], [0.75]
   play_pattern_timed [:F4], [0.5]
@@ -44,8 +44,8 @@ use_synth :beep
 
 end
 
-use_synth :tb303
-2.times do # the bass theme
+define :axel_f_bass do
+  use_synth :tb303
   play_pattern_timed [:F2], [1] # 09
   play_pattern_timed [:F3], [0.75]
   play_pattern_timed [:EB2], [0.5]
@@ -71,10 +71,26 @@ use_synth :tb303
   play_pattern_timed [:EB2], [0.5]
 
   play_pattern_timed [:F2], [1] # 12
-  sleep 1
-  sleep 0.25 # 1/16
+  sleep 0.25
   play_pattern_timed [:F3], [0.25]
   play_pattern_timed [:C3], [0.5]
   play_pattern_timed [:B2], [0.5]
   play_pattern_timed [:AB2], [0.5]
+end
+
+# here start the music ...
+
+2.times do
+  axel_f_melody
+end
+
+2.times do
+  axel_f_bass
+end
+
+2.times do
+  in_thread do
+    axel_f_melody
+  end
+  axel_f_bass
 end
