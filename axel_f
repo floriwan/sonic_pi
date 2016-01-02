@@ -39,7 +39,7 @@ define :axel_f_melody do
 
   #play_pattern_timed [:F4], [0.5]
   #play_pattern_timed [:F4], [1]
-  play_pattern_timed [:F4], [1.5] # play this as one note, how to set the release time here?
+  play_pattern_timed [:F4], [1.5], release: 1.7 
   sleep 1
 
 end
