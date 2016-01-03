@@ -45,7 +45,7 @@ define :axel_f_melody do
 end
 
 define :axel_f_bass_1 do
-  use_synth :tb303
+  use_synth :tri
   play_pattern_timed [:F2], [1] # 09
   play_pattern_timed [:F3], [0.75]
   play_pattern_timed [:EB2], [0.5]
@@ -64,7 +64,7 @@ define :axel_f_bass_1 do
 end
 
 define :axel_f_bass_2 do
-  use_synth :tb303
+  use_synth :tri
   play_pattern_timed [:D2], [1] # 11
   play_pattern_timed [:D3], [0.75]
   play_pattern_timed [:EB2], [0.5]
@@ -82,7 +82,7 @@ define :axel_f_bass_2 do
 end
 
 define :axel_f_bass_3 do
-  use_synth :tb303
+  use_synth :tri
   play_pattern_timed [:D2], [1]
   play_pattern_timed [:D3], [1]
   play_pattern_timed [:EB2], [1]
@@ -182,8 +182,8 @@ end
 end
 
 2.times do
-  axel_f_bass1
-  axel_f_bass2
+  axel_f_bass_1
+  axel_f_bass_2
 end
 
 in_thread do
