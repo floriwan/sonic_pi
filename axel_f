@@ -39,12 +39,12 @@ define :axel_f_melody do
 
   #play_pattern_timed [:F4], [0.5]
   #play_pattern_timed [:F4], [1]
-  play_pattern_timed [:F4], [1.5], release: 1.7 
+  play_pattern_timed [:F4], [1.5], release: 1.7
   sleep 1
 
 end
 
-define :axel_f_bass do
+define :axel_f_bass_1 do
   use_synth :tb303
   play_pattern_timed [:F2], [1] # 09
   play_pattern_timed [:F3], [0.75]
@@ -61,7 +61,10 @@ define :axel_f_bass do
   play_pattern_timed [:C3], [0.5]
   play_pattern_timed [:EB3], [0.5]
   play_pattern_timed [:F3], [0.5]
+end
 
+define :axel_f_bass_2 do
+  use_synth :tb303
   play_pattern_timed [:D2], [1] # 11
   play_pattern_timed [:D3], [0.75]
   play_pattern_timed [:EB2], [0.5]
@@ -78,6 +81,100 @@ define :axel_f_bass do
   play_pattern_timed [:AB2], [0.5]
 end
 
+define :axel_f_bass_3 do
+  use_synth :tb303
+  play_pattern_timed [:D2], [1]
+  play_pattern_timed [:D3], [1]
+  play_pattern_timed [:EB2], [1]
+  play_pattern_timed [:EB3], [1]
+
+  play_pattern_timed [:F2], [1]
+  play_pattern_timed [:F3], [1]
+  sleep 0.25
+
+  play_pattern_timed [:F3], [0.25]
+  play_pattern_timed [:C3], [0.5]
+  play_pattern_timed [:B2], [0.5]
+  play_pattern_timed [:AB2], [0.5]
+end
+
+define :axel_f_chords_melody_1 do
+  use_synth :beep
+  sleep 0.5
+  play_chord [:F4, :A4, :C5]
+  sleep 0.5
+  play_chord [:F4, :A4, :C5]
+  sleep 0.5
+  play_chord [:F4, :A4, :C5]
+  sleep 0.25
+  play_chord [:G4, :BB4, :EB5]
+  sleep 0.5
+  play_chord [:G4, :BB4, :EB5]
+  sleep 0.5
+  play_chord [:G4, :BB4, :EB5]
+  sleep 0.25
+  play_chord [:F4, :BB4, :D5]
+  sleep 0.5
+  play_chord [:F4, :BB4, :D5]
+  sleep 0.5
+end
+
+define :axel_f_chords_melody_2 do
+  use_synth :beep
+  sleep 0.5
+  play_chord [:F4, :A4, :C5]
+  sleep 0.5
+  play_chord [:F4, :A4, :C5]
+  sleep 0.5
+  play_chord [:F4, :A4, :C5]
+  sleep 0.25
+  play_chord [:G4, :BB4, :EB5]
+  sleep 0.5
+  play_chord [:G4, :BB4, :EB5]
+  sleep 0.5
+  play_chord [:G4, :BB4, :EB5]
+  sleep 0.25
+  play_chord [:F4, :BB4, :D5]
+  sleep 1
+end
+
+define :axel_f_chords_melody_3 do
+  use_synth :beep
+  sleep 0.5
+  play_chord [:D4, :F4, :AB4]
+  sleep 0.5
+  play_chord [:D4, :F4, :AB4]
+  sleep 0.5
+  play_chord [:D4, :F4, :AB4]
+  sleep 0.5
+  play_chord [:D4, :F4, :AB4]
+  sleep 0.25
+  play_chord [:E4, :G4, :BB4]
+  sleep 0.5
+  play_chord [:E4, :G4, :BB4]
+  sleep 0.5
+  play_chord [:E4, :G4, :BB4]
+  sleep 0.5
+  play_chord [:E4, :G4, :BB4]
+  sleep 0.25
+
+  play_chord [:E4, :G4, :BB4]
+  sleep 0.5
+  play_chord [:F4, :A4, :C5]
+  sleep 0.5
+  play_chord [:F4, :A4, :C5]
+  sleep 0.5
+  play_chord [:F4, :A4, :C5]
+  sleep 0.5
+  play_chord [:E4, :G4, :BB4]
+  sleep 0.25
+  play_chord [:F4, :A4, :C5]
+  sleep 0.5
+  play_chord [:F4, :A4, :C5]
+  sleep 0.75
+  sleep 0.5
+end
+
 # here start the music ...
 
 2.times do
@@ -85,12 +182,25 @@ end
 end
 
 2.times do
-  axel_f_bass
+  axel_f_bass1
+  axel_f_bass2
 end
+
+in_thread do
+  axel_f_melody
+end
+axel_f_bass_1
+axel_f_bass_2
 
 2.times do
   in_thread do
-    axel_f_melody
+    axel_f_chords_melody_1
+    axel_f_chords_melody_2
   end
-  axel_f_bass
+  axel_f_bass_1
+
+  in_thread do
+    axel_f_chords_melody_3
+  end
+  axel_f_bass_3
 end
