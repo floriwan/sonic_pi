@@ -1,0 +1,53 @@
+use_bpm 120
+
+live_loop :bass do
+  sample :bd_tek, cutoff: 50, amp: 1
+  sleep 1
+end
+
+live_loop :offbeat do
+  sync :bass
+  sleep 0.5
+  sample :drum_cymbal_closed,  amp: 1
+  sleep 0.5
+end
+
+live_loop :bla do
+  sync :bass
+  if (spread 3, 8).tick then
+    with_fx :wobble do
+      sample :perc_snap2, rate: 0.4, amp: 0.5
+      sleep 0.25
+      sample :perc_snap2, rate: 0.4, amp: 0.5
+    end
+    sleep 2
+  end
+
+end
+
+live_loop :time do
+  synth :tb303, release: 24, note: :c1, cutoff: (range 90, 60, -10).tick, amp: 0.6
+  sleep 10
+end
+
+live_loop :foo do
+  sync :bass
+  use_synth :saw
+  with_fx :wobble, mix: 0.7, res: 0.9, amp: 0.7, smooth: 0.5 do
+    #with_fx :flanger, phase: 8, delay: 5 do
+    play 64, attack: 0.1, release: 0.25, amp: 0.5, cutoff: 80
+    sleep 0.5
+    play 67, attack: 0.25, release: 0.4, amp: 0.5, cutoff: 80
+    sleep 0.5
+
+    sleep 0.5 # offset pause
+
+    play 64, attack: 0.1, release: 0.4, amp: 0.5, cutoff: 90
+    sleep 0.5
+    play 67, attack: 0.2, release: 0.4, amp: 0.5, cutoff: 90
+    sleep 0.5
+    play 64, attack: 0.1, release: 0.4, amp: 0.5, cutoff: 90
+    sleep 0.5
+  end
+
+end
