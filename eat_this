@@ -1,19 +1,19 @@
 use_bpm 120
 
-live_loop :bass do
-  sample :bd_tek, cutoff: 50, amp: 1
+define :bass do |n|
+  sample :bd_tek, cutoff: 50, amp: n
   sleep 1
 end
 
-live_loop :offbeat do
-  sync :bass
+define :offbeat do |n|
+  #sync :bass
   sleep 0.5
-  sample :drum_cymbal_closed,  amp: 1
+  sample :drum_cymbal_closed,  amp: n
   sleep 0.5
 end
 
-live_loop :bla do
-  sync :bass
+define :bla do
+  #  sync :bass
   if (spread 3, 8).tick then
     with_fx :wobble do
       sample :perc_snap2, rate: 0.4, amp: 0.5
@@ -25,13 +25,13 @@ live_loop :bla do
 
 end
 
-live_loop :time do
+define :raaaooo do
   synth :tb303, release: 24, note: :c1, cutoff: (range 90, 60, -10).tick, amp: 0.6
   sleep 10
 end
 
-live_loop :foo do
-  sync :bass
+define :lalala do
+  #sync :bass
   use_synth :saw
   with_fx :wobble, mix: 0.7, res: 0.9, amp: 0.7, smooth: 0.5 do
     #with_fx :flanger, phase: 8, delay: 5 do
@@ -49,5 +49,171 @@ live_loop :foo do
     play 64, attack: 0.1, release: 0.4, amp: 0.5, cutoff: 90
     sleep 0.5
   end
+end
 
+#
+# now play some music
+#
+
+10.times do
+  bass 0.7
+end
+
+in_thread do
+  sample :ambi_swoosh, rate: 0.5, pitch: 2, amp: 2
+end
+7.times do
+  bass 0.7
+end
+
+10.times do
+  in_thread do
+    bass 0.7
+  end
+  offbeat 0.7
+end
+
+in_thread do
+  sample :ambi_swoosh, rate: 0.5, pitch: 2, amp: 2
+end
+6.times do
+  in_thread do
+    bass 0.7
+  end
+  offbeat 0.7
+end
+
+10.times do
+  in_thread do
+    bass 1
+  end
+  offbeat 1
+end
+
+2.times do
+  in_thread do
+    sample :ambi_swoosh, rate: 0.5, pitch: 2, amp: 2
+    raaaooo
+  end
+  20.times do
+    in_thread do
+      bass 1
+    end
+    offbeat 1
+  end
+end
+
+5.times do
+  offbeat 1
+end
+
+5.times do
+  in_thread do
+    sample :ambi_swoosh, rate: 0.5, pitch: 2, amp: 2
+    raaaooo
+  end
+
+  10.times do
+    in_thread do
+      lalala
+    end
+    3.times do
+      in_thread do
+        bass 1
+      end
+      offbeat 1
+    end
+  end
+end
+
+2.times do
+  in_thread do
+    bla
+  end
+  4.times do
+    bass 1
+  end
+end
+
+2.times do
+  in_thread do
+    bla
+  end
+  4.times do
+    in_thread do
+      bass 1
+    end
+    offbeat 1
+  end
+end
+
+2.times do
+  in_thread do
+    bla
+  end
+  4.times do
+    bass 1
+  end
+end
+
+2.times do
+  in_thread do
+    bla
+  end
+  4.times do
+    in_thread do
+      bass 1
+    end
+    offbeat 1
+  end
+end
+
+2.times do
+  in_thread do
+    bla
+  end
+  4.times do
+    in_thread do
+      bass 1
+    end
+    offbeat 1
+  end
+end
+
+in_thread do
+  sample :ambi_swoosh, rate: 0.5, pitch: 2, amp: 2
+  raaaooo
+end
+
+2.times do
+  in_thread do
+    bla
+  end
+  4.times do
+    in_thread do
+      bass 1
+    end
+    offbeat 1
+  end
+end
+
+in_thread do
+  sample :ambi_swoosh, rate: 0.5, pitch: 2, amp: 2
+  raaaooo
+end
+
+2.times do
+  in_thread do
+    lalala
+  end
+  3.times do
+    in_thread do
+      bass 1
+    end
+    offbeat 1
+  end
+end
+
+10.times do
+  offbeat 1
 end
